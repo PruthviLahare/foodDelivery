@@ -1,39 +1,45 @@
-const deliveringOrder = (obj) => {
+const calculateTimeRequird = (timePassed) => {
+  const remainingTime = ((Date.now() - timePassed) / 1000).toFixed(2);
+
+  return `[${remainingTime}s]`;
+};
+
+const deliveringOrder = (obj, time) => {
   console.log("Delivering order...");
 
   setTimeout(() => {
     obj["deliveryDetails"] = "Delivered by John at 7:30 PM";
-    console.log("Order delivered:", obj);
-    // deliveringOrder(obj);
+    console.log(`${calculateTimeRequird(time)} Order delivered:`, obj);
   }, 5000);
 };
 
-const packingFood = (obj) => {
+const packingFood = (obj, time) => {
   console.log("Packing order...");
 
   setTimeout(() => {
     obj["packageDetails"] = "Packed in eco-friendly box";
-    console.log("Order packed:", obj);
-    deliveringOrder(obj);
+
+    console.log(`${calculateTimeRequird(time)} Order packed:`, obj);
+    deliveringOrder(obj, time);
   }, 2000);
 };
 
-const preparingFood = (orderId, obj, ms) => {
+const preparingFood = (obj, time) => {
   console.log("preparing food...");
 
   setTimeout(() => {
-    console.log("Food is ready:", obj);
-    packingFood(obj);
+    console.log(`${calculateTimeRequird(time)} Food is ready:`, obj);
+    packingFood(obj, time);
   }, 3000);
 };
 
 const main = () => {
-  const ms = Date.now();
+  const time = Date.now();
 
   console.log(`[0.00s] Order received: { orderId: 123 }`);
 
   const obj = { orderId: 123, foodDetails: "Burger & Fries" };
-  return preparingFood(123, obj, ms);
+  return preparingFood(obj, time);
 };
 
 main();
