@@ -20,7 +20,7 @@ const packingFood = (obj, time) => {
     obj["packageDetails"] = "Packed in eco-friendly box";
 
     console.log(`${calculateTimeRequird(time)} Order packed:`, obj);
-    deliveringOrder(obj, time);
+    return deliveringOrder(obj, time);
   }, 2000);
 };
 
@@ -29,7 +29,7 @@ const preparingFood = (obj, time) => {
 
   setTimeout(() => {
     console.log(`${calculateTimeRequird(time)} Food is ready:`, obj);
-    packingFood(obj, time);
+    return packingFood(obj, time);
   }, 3000);
 };
 
