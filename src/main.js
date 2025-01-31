@@ -1,4 +1,12 @@
-// const deliveringOrder
+const deliveringOrder = (obj) => {
+  console.log("Delivering order...");
+
+  setTimeout(() => {
+    obj["deliveryDetails"] = "Delivered by John at 7:30 PM";
+    console.log("Order delivered:", obj);
+    // deliveringOrder(obj);
+  }, 5000);
+};
 
 const packingFood = (obj) => {
   console.log("Packing order...");
@@ -6,7 +14,7 @@ const packingFood = (obj) => {
   setTimeout(() => {
     obj["packageDetails"] = "Packed in eco-friendly box";
     console.log("Order packed:", obj);
-    // deliveringOrder(obj);
+    deliveringOrder(obj);
   }, 2000);
 };
 
