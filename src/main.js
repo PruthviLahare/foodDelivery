@@ -1,3 +1,7 @@
+const process = (time, msg, functionToCall, timeout) => {
+  setTimeout(() => {}, timeout);
+};
+
 const calculateTimeRequird = (timePassed) => {
   const remainingTime = ((Date.now() - timePassed) / 1000).toFixed(2);
 
