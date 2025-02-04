@@ -1,4 +1,4 @@
-const process = (next, before, after, timeNeeded) => {
+const process = (before, after, timeNeeded, next) => {
   before();
 
   setTimeout(() => {
@@ -9,28 +9,28 @@ const process = (next, before, after, timeNeeded) => {
 
 const preparing = () => {
   process(
-    packing,
     () => console.log("Preparing food..."),
     () => console.log("food is ready"),
-    2000
+    2000,
+    packing
   );
 };
 
 const packing = () => {
   process(
-    delivery,
     () => console.log("Packing order..."),
     () => console.log("Order packed"),
-    2000
+    2000,
+    delivery
   );
 };
 
 const delivery = () => {
   process(
-    Deno.exit,
     () => console.log("Delivering order..."),
     () => console.log("Order delivered"),
-    2000
+    2000,
+    Deno.exit
   );
 };
 
