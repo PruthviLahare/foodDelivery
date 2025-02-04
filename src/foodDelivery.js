@@ -11,8 +11,8 @@ const process = (before, update, complete, timeNeeded, next) => (bill) => {
 
 const delivery = process(
   () => console.log("Delivering order..."),
-  (bill) => (bill["packageDetails"] = "'Delivered by John at 7:30 PM"),
-  () => console.log("deliveryDetails"),
+  (bill) => (bill["deliveryDetailss"] = "'Delivered by John at 7:30 PM"),
+  (bill) => console.log("deliveryDetails", bill),
   5000,
   Deno.exit
 );
@@ -20,7 +20,7 @@ const delivery = process(
 const packing = process(
   () => console.log("Packing order..."),
   (bill) => (bill["packageDetails"] = "Packed in eco-friendly box"),
-  () => console.log("Order packed"),
+  (bill) => console.log("Order packed", bill),
   2000,
   delivery
 );
@@ -34,15 +34,15 @@ const preparing = process(
 );
 
 const orderRecived = process(
-  () => console.log("Delivering order..."),
+  () => {},
   (bill) => (bill["id"] = 123),
-  (bill) => console.log("Order received", bill),
+  (bill) => console.log("Order received:", bill),
   0,
   preparing
 );
 
 const main = () => {
-  orderRecived({ id: 123 });
+  orderRecived({});
 };
 
 main();
